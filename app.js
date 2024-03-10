@@ -24,7 +24,7 @@ const port = 3000;
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
 
-// Set the view engine to EJS
+// Set the view engine to EJS 2
 app.set('view engine', 'ejs');
 
 app.use('/cs2server', gameRoutes);
