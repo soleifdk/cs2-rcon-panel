@@ -82,7 +82,7 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/cs2server/css/navbar.css">
 </head>
 <body>
   <%- include('partials/navbar') %>
@@ -150,7 +150,7 @@
 
         // Make an API POST request to add the server
         $.ajax({
-          url: '/api/add-server', // Adjust the API endpoint
+          url: '/cs2server/api/add-server', // Adjust the API endpoint
           type: 'POST',
           data: JSON.stringify(serverData),
           contentType: 'application/json',

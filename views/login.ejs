@@ -141,13 +141,13 @@
 
         // Make an API POST request to add the server
         $.ajax({
-          url: '/auth/login', // Adjust the API endpoint
+          url: '/cs2server/auth/login', // Adjust the API endpoint
           type: 'POST',
           data: JSON.stringify(user_data),
           contentType: 'application/json',
           success: function (data) {
             if (data.status == 200) {
-              window.location = "/servers";
+              window.location = "/cs2server/servers";
             } else if (data.status == 401) {
               alert('Invalid Credentials')
             }

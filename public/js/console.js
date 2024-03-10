@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     function fetch_servers() {
         $.ajax({
-            url: '/api/servers',
+            url: '/cs2server/api/servers',
             type: 'GET',
             success: function (data) {
                 $('#serverList').empty();
@@ -26,7 +26,7 @@ $(document).ready(function () {
                       RCON Authenticated: ${server.authenticated ? 'Yes' : 'No'}
                     </p>
                     ${(!server.connected || !server.authenticated) ? '<button class="btn btn-success" server-id="' + server.id + '" id="reconnect_server">Reconnect</button>' : ''}
-                    <a href="/manage/${server.id}" class="btn btn-primary">Manage</a>
+                    <a href="/cs2server/manage/${server.id}" class="btn btn-primary">Manage</a>
                     <button class="btn btn-danger" server-id='${server.id}' id="delete_server">Delete</button>
                   </div>
                 </div>
@@ -41,7 +41,7 @@ $(document).ready(function () {
                     try {
                         const server_id = $(element.target).attr("server-id");
                         const response = await $.ajax({
-                            url: '/api/reconnect-server',
+                            url: '/cs2server/api/reconnect-server',
                             type: 'POST',
                             data: JSON.stringify({ server_id: server_id }),
                             headers: {
@@ -63,7 +63,7 @@ $(document).ready(function () {
                     const confirmed = confirm("Are you sure you want to delete this server?");
                     if (confirmed) {
                         window.server_id = $(element.target).attr("server-id");
-                        await send_post_request("/api/delete-server");
+                        await send_post_request("/cs2server/api/delete-server");
                         fetch_servers();
                     }
                 });
@@ -107,7 +107,7 @@ $(document).ready(function () {
             if (response.ok) {
                 const data = await response.json();
                 console.log(data.message)
-                if(apiEndpoint == '/api/rcon') {
+                if(apiEndpoint == '/cs2server/api/rcon') {
                     if (data.message.includes("Response received")) {
                         $('#rconResultBox').show();
                         $('#rconResultText').text(data.message.split("Command sent! Response received:")[1]);
@@ -132,43 +132,43 @@ $(document).ready(function () {
 
     $('#pause_game').on('click', function () {
         if (confirm("Are you sure you want to pause the game?")) {
-            send_post_request('/api/pause');
+            send_post_request('/cs2server/api/pause');
         }
     });
     
     $('#unpause_game').on('click', function () {
         if (confirm("Are you sure you want to unpause the game?")) {
-            send_post_request('/api/unpause');
+            send_post_request('/cs2server/api/unpause');
         }
     });
     
     $('#restart_game').on('click', function () {
         if (confirm("Are you sure you want to restart the game?")) {
-            send_post_request('/api/restart');
+            send_post_request('/cs2server/api/restart');
         }
     });
     
     $('#start_warmup').on('click', function () {
         if (confirm("Are you sure you want to start the warm-up?")) {
-            send_post_request('/api/start-warmup');
+            send_post_request('/cs2server/api/start-warmup');
         }
     });
     
     $('#knife_start').on('click', function () {
         if (confirm("Are you sure you want to start the knife round?")) {
-            send_post_request('/api/start-knife');
+            send_post_request('/cs2server/api/start-knife');
         }
     });
     
     $('#swap_team').on('click', function () {
         if (confirm("Are you sure you want to swap teams?")) {
-            send_post_request('/api/swap-team');
+            send_post_request('/cs2server/api/swap-team');
         }
     });
     
     $('#go_live').on('click', function () {
         if (confirm("Are you sure you want to go live?")) {
-            send_post_request('/api/go-live');
+            send_post_request('/cs2server/api/go-live');
         }
     });
 
@@ -176,7 +176,7 @@ $(document).ready(function () {
         let data = {
             command: $('#rconInput').val()
         };
-        send_post_request('/api/rcon', data);
+        send_post_request('/cs2server/api/rcon', data);
         $('#rconInput').val('');
     });
 
@@ -184,17 +184,17 @@ $(document).ready(function () {
         let data = {
             message: $('#say_input').val()
         };
-        send_post_request('/api/say-admin', data);
+        send_post_request('/cs2server/api/say-admin', data);
         $('#say_input').val('');
     });
 
     $('#list_backups').on('click', function () {
-        send_post_request('/api/list-backups');
+        send_post_request('/cs2server/api/list-backups');
     });
 
     $('#restore_latest_backup').on('click', function () {
         if (confirm("Are you sure you want to restore the latest round backup?")) {
-            send_post_request('/api/restore-latest-backup');
+            send_post_request('/cs2server/api/restore-latest-backup');
         }
     });
 
@@ -203,7 +203,7 @@ $(document).ready(function () {
         if (round_number !== null && round_number.trim() !== '') {
             const round_number_value = parseInt(round_number);
             if (!isNaN(round_number_value)) {
-                send_post_request('/api/restore-round', { round_number: round_number_value });
+                send_post_request('/cs2server/api/restore-round', { round_number: round_number_value });
             } else {
                 alert('Invalid round number. Please enter a valid number.');
             }
@@ -220,6 +220,6 @@ $(document).ready(function () {
             game_mode: $('#game_mode').val(),
             server_id: window.server_id
         };
-        send_post_request('/api/setup-game', data);
+        send_post_request('/cs2server/api/setup-game', data);
     });
 });
