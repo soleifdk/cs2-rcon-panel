@@ -74,7 +74,7 @@ $(document).ready(function () {
             },
         });
     }
-    if (current_path == "/cs2server/servers") {
+    if (current_path == "/cs2server/servers") { //changed to cover. let get this change here ok ???!!!!
         fetch_servers();
     }
 

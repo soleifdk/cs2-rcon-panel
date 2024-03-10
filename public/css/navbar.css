@@ -11,6 +11,9 @@
 .custom-navbar .navbar-toggler-icon {
     background-color: #fff;
 }
+.logo {
+    background-image: url(&quot;https://www.soleif.dk/img/nylogoSVG.47672203.svg&quot;); background-position: center center;
+}
 
 .custom-navbar .navbar-nav .nav-link {
     color: #fff;
