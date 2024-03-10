@@ -27,13 +27,13 @@ app.use(express.static('public'));
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
 
-app.use('/', gameRoutes);
-app.use('/', serverRoutes);
-app.use('/', authRoutes)
+app.use('/cs2server', gameRoutes);
+app.use('/cs2server', serverRoutes);
+app.use('/cs2server', authRoutes)
 
-app.get('/', (req, res) => {
+app.get('/cs2server', (req, res) => {
     if (req.session.user) {
-        res.redirect('/servers');
+        res.redirect('/cs2server/servers');
     } else {
         res.render('login');
     }
