@@ -74,10 +74,23 @@ $(document).ready(function () {
             },
         });
     }
+
+
+
+
+
+
+
+
+
+
     if (current_path == "/cs2server/servers") { //changed to cover. let get this change here ok ???!!!!
         fetch_servers();
     }
 
+
+
+    
     function toggle_password_visibility(server_id) {
         const password_field = document.getElementsByClassName("rcon-password-" + server_id)[0]
         const eye_icon = document.getElementById(`toggleEyeIcon-${server_id}`);
