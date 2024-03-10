@@ -74,7 +74,7 @@ $(document).ready(function () {
             },
         });
     }
-    if (current_path == "/servers") {
+    if (current_path == "/cs2server/servers") {
         fetch_servers();
     }
 
